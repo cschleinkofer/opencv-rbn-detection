@@ -1,0 +1,3 @@
+/Users/schleinkofer/Documents/Projekte/OpenCV/Toolchain/imageclipper/build/CMakeFiles/rebuild_cache.dir
+/Users/schleinkofer/Documents/Projekte/OpenCV/Toolchain/imageclipper/build/CMakeFiles/edit_cache.dir
+/Users/schleinkofer/Documents/Projekte/OpenCV/Toolchain/imageclipper/build/CMakeFiles/imageclipper.dir
