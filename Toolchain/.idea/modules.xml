@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ImageCropper.iml" filepath="$PROJECT_DIR$/.idea/ImageCropper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Toolchain.iml" filepath="$PROJECT_DIR$/.idea/Toolchain.iml" />
     </modules>
   </component>
 </project>
