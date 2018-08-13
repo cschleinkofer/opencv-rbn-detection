@@ -55,9 +55,15 @@ def main():
 
 def callback(event, x, y, flags, param):
     global current_image, crop_rect_left, crop_rect_top
-    print(flags)
-    print(param)
-    print(event)
+
+    if current_image is None:
+        return
+
+    if crop_rect_width == 0:
+        return
+
+    if crop_rect_height == 0:
+        return
 
     crop_rect_left = x
     crop_rect_top = y
@@ -66,6 +72,9 @@ def callback(event, x, y, flags, param):
 
     cv2.rectangle(clone, (int(x), int(y)), (int(x + crop_rect_width), int(y + crop_rect_height)), (0, 255, 0), 3)
     cv2.imshow('ImageWindow', clone)
+
+    crop_img = clone[int(y):int(y + crop_rect_height), int(x):int(x + crop_rect_width)]
+    cv2.imshow('PreviewWindow', crop_img)
 
 
 def crop_current_image(image, x, y, width, height, filename):
@@ -78,9 +87,6 @@ def crop_current_image(image, x, y, width, height, filename):
 def process_file(file):
     global current_image
     current_image = cv2.imread(file)
-    cv2.namedWindow('ImageWindow', cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('ImageWindow', 1024, 768)
-    cv2.setMouseCallback('ImageWindow', callback)
     cv2.imshow('ImageWindow', current_image)
 
     return cv2.waitKey(0) & 0xFF
@@ -88,6 +94,12 @@ def process_file(file):
 
 def process(input_directory, output_directory):
     global crop_rect_width, crop_rect_height, crop_rect_ratio
+
+    cv2.namedWindow('ImageWindow', cv2.WINDOW_NORMAL)
+    cv2.resizeWindow('ImageWindow', 1024, 768)
+    cv2.namedWindow('PreviewWindow', cv2.WINDOW_AUTOSIZE)
+    cv2.setMouseCallback('ImageWindow', callback)
+
     input_files = list(get_files(input_directory))
     list_index = 0
 
