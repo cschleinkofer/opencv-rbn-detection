@@ -1,6 +1,7 @@
 import cv2
 import argparse
 import os
+import sys
 
 current_image = None
 crop_rect_left = 0
@@ -33,19 +34,19 @@ def main():
 
     if arguments.id is None:
         print("No input directory provided")
-        exit(0)
+        sys.exit(2)
 
     if arguments.od is None:
         print("No output directory provided")
-        exit(0)
+        sys.exit(2)
 
     if arguments.rw is None:
         print("No crop rect width specified")
-        exit(0)
+        sys.exit(2)
 
     if arguments.rh is None:
         print("No crop rect height specified")
-        exit(0)
+        sys.exit(2)
 
     crop_rect_width = float(arguments.rw)
     crop_rect_height = float(arguments.rh)
