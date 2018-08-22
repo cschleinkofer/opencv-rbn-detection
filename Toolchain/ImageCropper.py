@@ -3,6 +3,15 @@ import argparse
 import os
 import sys
 
+# -id
+# /Users/schleinkofer/Desktop/test/
+# -od
+# /Users/schleinkofer/Documents/Projekte/opencv-rbn-detection/TrainingData/positive_images/
+# -rw
+# 28
+# -rh
+# 16
+
 current_image = None
 crop_rect_left = 0
 crop_rect_top = 0
@@ -86,18 +95,23 @@ def crop_current_image(image, x, y, width, height, filename):
 
 
 def process_file(file):
-    global current_image
-    current_image = cv2.imread(file)
-    cv2.imshow('ImageWindow', current_image)
+    try:
+        global current_image
+        current_image = cv2.imread(file)
 
-    return cv2.waitKey(0) & 0xFF
+        if not current_image.empty():
+            cv2.imshow('ImageWindow', current_image)
+
+        return cv2.waitKey(0) & 0xFF
+    except:
+        return ord('n')
 
 
 def process(input_directory, output_directory):
     global crop_rect_width, crop_rect_height, crop_rect_ratio
 
-    cv2.namedWindow('ImageWindow', cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('ImageWindow', 1024, 768)
+    cv2.namedWindow('ImageWindow', cv2.WINDOW_FULLSCREEN)
+    # cv2.resizeWindow('ImageWindow', 1024, 768)
     cv2.namedWindow('PreviewWindow', cv2.WINDOW_AUTOSIZE)
     cv2.setMouseCallback('ImageWindow', callback)
 
